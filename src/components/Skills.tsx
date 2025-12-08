@@ -12,10 +12,10 @@ const Skills: React.FC = () => {
       skills: [
         ".NET 8, .NET Core, C#",
         "Entity Framework Core, LINQ",
-        "RESTful API, Microservices Architecture",
+        "RESTful API, Microservices Architecture, Clean Architecture",
         "Dapr (Pub/Sub, Actors, Service Invocation)",
-        "OOP, SOLID Principles, Design Patterns (CQRS, Repository, Dependency Injection)",
-        "Async/Await Programming"
+        "OOP, SOLID Principles, Design Patterns (CQRS, Repository, DI, Factory, Saga, Outbox...)",
+        "Async/Await Programming, Message Queues, Event-Driven Architecture, Unit of Work Pattern"
       ]
     },
     {
