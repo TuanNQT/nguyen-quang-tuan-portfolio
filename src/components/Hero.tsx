@@ -1,61 +1,110 @@
-// src/components/Hero.tsx
-import React from 'react';
+﻿// src/components/Hero.tsx
+import React, { useState } from 'react';
+import { profile } from '../data/portfolio';
 
 const Hero: React.FC = () => {
-  return (
-    <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-white overflow-hidden">
-      <div className="container mx-auto px-4 flex flex-col items-center text-center">
-        <div className="animate-fade-in-up">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in-down">
-            Nguyễn Quang Tuấn
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-6 animate-fade-in-up animation-delay-200">
-            .NET Backend Developer
-          </h2>
-          <p className="text-xl max-w-2xl mb-8 animate-fade-in-up animation-delay-400">
-            Lập trình viên .NET với gần 4 năm kinh nghiệm phát triển các hệ thống phần mềm doanh nghiệp quy mô vừa và lớn.
-          </p>
-        </div>
-        
-        <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up animation-delay-600">
-          <a 
-            href="#contact" 
-            className="group bg-white text-blue-700 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center gap-2"
-          >
-            <span>Liên hệ ngay</span>
-            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-          <a 
-            href="#experience" 
-            className="group bg-transparent border-2 border-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
-          >
-            <span>Xem kinh nghiệm</span>
-            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </a>
-        </div>
+  const [avatarMissing, setAvatarMissing] = useState(false);
+  const avatarSrc = `${import.meta.env.BASE_URL}${profile.avatarPath}`;
+  const heroBgSrc = `${import.meta.env.BASE_URL}${profile.heroBackgroundImagePath}`;
+  const isSoftGrain = profile.heroBackgroundVariant === 'soft-grain';
+  const isTechImage = profile.heroBackgroundVariant === 'tech-image';
 
-        {/* Animated scroll indicator */}
-        <div className="mt-16 animate-bounce-slow">
-          <a 
-            href="#about" 
-            className="flex flex-col items-center text-white/70 hover:text-white transition-colors duration-300"
-          >
-            <span className="text-sm mb-2">Khám phá thêm</span>
-            <svg className="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </a>
+  return (
+    <section className="relative py-12 md:py-20 bg-gradient-to-br from-sky-600 via-blue-600 to-indigo-700 dark:from-slate-900 dark:via-slate-900 dark:to-indigo-950 text-white overflow-hidden transition-colors duration-300">
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className={`absolute inset-0 ${isTechImage ? 'opacity-[0.12]' : 'opacity-[0.09]'}`}
+          style={{
+            backgroundImage:
+              isTechImage
+                ? 'radial-gradient(circle at 20% 18%, rgba(125,211,252,0.22) 0, rgba(125,211,252,0) 36%), radial-gradient(circle at 82% 16%, rgba(255,255,255,0.16) 0, rgba(255,255,255,0) 32%), radial-gradient(circle at 70% 80%, rgba(165,180,252,0.18) 0, rgba(165,180,252,0) 34%)'
+                : isSoftGrain
+                ? 'radial-gradient(circle at 18% 22%, rgba(255,255,255,0.30) 0, rgba(255,255,255,0) 34%), radial-gradient(circle at 82% 12%, rgba(125,211,252,0.20) 0, rgba(125,211,252,0) 30%), radial-gradient(circle at 74% 78%, rgba(191,219,254,0.16) 0, rgba(191,219,254,0) 32%)'
+                : 'radial-gradient(circle at 18% 22%, rgba(255,255,255,0.32) 0, rgba(255,255,255,0) 34%), radial-gradient(circle at 82% 12%, rgba(125,211,252,0.22) 0, rgba(125,211,252,0) 30%), radial-gradient(circle at 74% 78%, rgba(191,219,254,0.18) 0, rgba(191,219,254,0) 32%)',
+          }}
+        ></div>
+        {isTechImage && (
+          <div
+            className="absolute inset-0 opacity-[0.14]"
+            style={{
+              backgroundImage: `linear-gradient(rgba(6,18,46,0.42), rgba(6,18,46,0.28)), url(${heroBgSrc})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          ></div>
+        )}
+        <div
+          className={`absolute inset-0 ${isTechImage ? 'opacity-[0.025]' : isSoftGrain ? 'opacity-[0.08]' : 'opacity-[0.045]'}`}
+          style={{
+            backgroundImage:
+              isTechImage
+                ? 'linear-gradient(rgba(255,255,255,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.16) 1px, transparent 1px)'
+                : isSoftGrain
+                ? 'radial-gradient(rgba(255,255,255,0.18) 0.7px, transparent 0.7px), radial-gradient(rgba(255,255,255,0.14) 0.7px, transparent 0.7px)'
+                : 'linear-gradient(rgba(255,255,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.18) 1px, transparent 1px)',
+            backgroundSize: isTechImage ? '72px 72px' : isSoftGrain ? '3px 3px, 5px 5px' : '56px 56px',
+            backgroundPosition: isSoftGrain ? '0 0, 1.5px 1.5px' : '0 0',
+          }}
+        ></div>
+      </div>
+
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="animate-fade-in-up">
+            <p className="uppercase tracking-[0.2em] text-xs md:text-sm text-blue-100 dark:text-blue-200 mb-3">.NET Backend Engineer</p>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in-down">{profile.name}</h1>
+            <h2 className="text-xl md:text-2xl mt-3 text-blue-100 dark:text-blue-200">{profile.title}</h2>
+            <p className="text-base md:text-lg mt-5 text-blue-50 dark:text-slate-200 leading-relaxed max-w-2xl">{profile.headline}</p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {profile.highlights.map((item, index) => (
+                <span key={item} className={`px-3 py-1.5 rounded-full text-sm bg-white/15 border border-white/20 animate-fade-in-up animation-delay-${(index + 1) * 100}`}>
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-3 mt-8 animate-fade-in-up animation-delay-300">
+              <a
+                href="#experience"
+                className="group bg-white text-blue-700 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center gap-2"
+              >
+                <span>Xem kinh nghiệm</span>
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+              <a
+                href="#contact"
+                className="group border-2 border-white/70 hover:border-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all duration-300 inline-flex items-center gap-2"
+              >
+                <span>Liên hệ nhanh</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="animate-fade-in-up animation-delay-200">
+            <div className="relative mx-auto max-w-md">
+              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-cyan-300/30 to-indigo-200/20 blur-lg"></div>
+              <div className="relative rounded-2xl bg-white/10 border border-white/25 p-3 shadow-2xl">
+                {!avatarMissing ? (
+                  <img src={avatarSrc} alt={`${profile.name} avatar`} className="w-full h-[420px] md:h-[500px] object-cover rounded-xl" loading="eager" onError={() => setAvatarMissing(true)} />
+                ) : (
+                  <div className="w-full h-[420px] md:h-[500px] rounded-xl bg-gradient-to-br from-slate-100 to-slate-300 flex items-center justify-center">
+                    <span className="text-6xl font-bold text-slate-600">NQT</span>
+                  </div>
+                )}
+                <div className="absolute bottom-6 left-6 right-6 bg-slate-900/55 backdrop-blur-sm rounded-lg px-4 py-3">
+                  <p className="text-sm text-blue-100">{profile.summary}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Floating background elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-float"></div>
-      <div className="absolute bottom-20 right-20 w-16 h-16 bg-white/5 rounded-full animate-float animation-delay-1000"></div>
-      <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-white/8 rounded-full animate-float animation-delay-500"></div>
+      <div className="absolute top-10 -left-10 w-40 h-40 bg-cyan-300/20 rounded-full blur-2xl animate-float pointer-events-none"></div>
+      <div className="absolute bottom-10 -right-10 w-44 h-44 bg-indigo-200/15 rounded-full blur-2xl animate-float animation-delay-300 pointer-events-none"></div>
     </section>
   );
 };

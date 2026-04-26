@@ -6,16 +6,29 @@ export const useSmoothScroll = (): void => {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const link = target.closest('a');
-      
-      if (link && link.hash) {
+
+      if (!link) {
+        return;
+      }
+
+      const hash = link.hash?.trim();
+      if (!hash || hash === '#') {
+        return;
+      }
+
+      let targetElement: Element | null = null;
+      try {
+        targetElement = document.querySelector(hash);
+      } catch {
+        return;
+      }
+
+      if (targetElement) {
         e.preventDefault();
-        const targetElement = document.querySelector(link.hash);
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
       }
     };
 

@@ -1,4 +1,4 @@
-/* src/index.css */
+﻿/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,24 +9,24 @@ html {
 }
 
 /* Custom animations delay */
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
 .animation-delay-200 {
   animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
 }
 
 .animation-delay-400 {
   animation-delay: 400ms;
 }
 
-.animation-delay-600 {
-  animation-delay: 600ms;
-}
-
-.animation-delay-800 {
-  animation-delay: 800ms;
-}
-
-.animation-delay-1000 {
-  animation-delay: 1000ms;
+.animation-delay-500 {
+  animation-delay: 500ms;
 }
 
 /* Custom scrollbar */
@@ -47,11 +47,25 @@ html {
   background: #a8a8a8;
 }
 
-/* Focus styles for accessibility */
+html.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Disable default/custom focus ring on interactive elements */
 button:focus,
-a:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+button:focus-visible,
+a:focus,
+a:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 /* Reduce motion for users who prefer it */
