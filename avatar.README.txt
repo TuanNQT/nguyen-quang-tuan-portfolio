@@ -1,0 +1,2 @@
+﻿Place your avatar file here with exact name: avatar.jpg
+Used by: src/data/portfolio.ts (profile.avatarPath = '/avatar.jpg')

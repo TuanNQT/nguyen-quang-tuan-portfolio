@@ -1,0 +1,2 @@
+﻿Place tech background image here with exact name: hero-tech-bg.png
+Used by: src/data/portfolio.ts (profile.heroBackgroundImagePath)
